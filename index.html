@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
+<!--
+======================================================================
+ HOW TO EDIT THIS WEBSITE
+ Open this file in a text editor (Notepad, TextEdit, or VS Code).
+ Use Find (Ctrl+F or Cmd+F) and search for the label, or jump to
+ the line number. Only change the words between > and <, and the
+ addresses inside quotes. Save, then refresh the page in your browser.
+
+   WHAT YOU WANT TO CHANGE            SEARCH FOR                LINE
+   Text on the Home page              EDIT 1: HOME PAGE TEXT    272
+   Your email address                 EDIT 2: EMAIL ADDRESS     279
+   Where the View CV button goes      EDIT 3: CV BUTTON         284
+   Your publications                  EDIT 4: PUBLICATIONS      297
+   Your affiliations and links        EDIT 5: AFFILIATIONS      317
+   Your photo                         EDIT 6: PHOTO             265
+   The icon on the browser tab        EDIT 7: TAB ICON          33
+
+ FILES THAT MUST SIT TOGETHER IN ONE FOLDER
+   index.html    this file
+   photo.jpg     your picture
+   favicon.png   optional tab icon (see EDIT 7)
+======================================================================
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- The name shown on the browser tab -->
+<title>Joji Chia</title>
+
+<!-- EDIT 7: TAB ICON
+     Right now this is a small built-in moon and stars drawing so the tab is never blank.
+     To use the Icons8 icon instead: download it as a PNG, name it favicon.png,
+     put it in the same folder as this file, delete the line below that starts
+     with <link rel="icon" href="data:..., and remove the comment marks around the next line. -->
+<!-- <link rel="icon" type="image/png" href="favicon.png"> -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M40 6a26 26 0 1 0 18 40A22 22 0 0 1 40 6z' fill='%23f2c94c'/%3E%3Ccircle cx='48' cy='14' r='3' fill='%23f2c94c'/%3E%3Ccircle cx='56' cy='28' r='2' fill='%23f2c94c'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  /* Layout idea: one left-aligned column, name on top, tabs under it,
+     a pulse line closing the header, a tall portrait beside the text. */
+  :root {
+    --page: #ffffff;
+    --ink: #14211d;
+    --muted: #56655f;
+    --line: #dfe8e4;
+    --accent: #0f6b55;
+    --tint: #e6f3ee;
+    --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "IBM Plex Mono", Consolas, Menlo, monospace;
+    color-scheme: light;
+  }
+  :root[data-mode="dark"] {
+    --page: #0b1614;
+    --ink: #e9f0ec;
+    --muted: #9db0a8;
+    --line: #1f302b;
+    --accent: #7fd6b5;
+    --tint: #14251f;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.65;
+    /* LEAF CURSOR (computers only; phones have no cursor) */
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M3 3C18 2 28 10 26 26C12 27 3 18 3 3Z' fill='%231a8a6c' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M3 3L29 29' stroke='%230b4a3a' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M12 12l1-6M17 17l2-8M21 21l2-7M12 12l-6 1M17 17l-8 2M21 21l-7 2' stroke='%230b4a3a' stroke-width='1' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") 3 3, auto;
+  }
+  a, button { cursor: pointer; }
+
+  /* ---------- header: name, tabs, theme button ---------- */
+  .top {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--page);
+  }
+  .pulse { display: flex; align-items: center; color: var(--accent); }
+  .pulse::before { content: ""; flex: 0 0 24px; height: 1px; background: var(--line); }
+  .pulse::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .pulse svg { flex: none; width: 96px; height: 22px; display: block; }
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .top .wrap { padding-top: 22px; padding-bottom: 6px; }
+  .name {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(30px, 5vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .name span { color: var(--muted); font-style: italic; }
+  .bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    margin-top: 12px;
+  }
+  .tabs { display: flex; gap: 22px; }
+  .tabs a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 9px 0;
+    border-bottom: 2px solid transparent;
+  }
+  .tabs a:hover { color: var(--ink); }
+  .tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+  .mode {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+  }
+  .mode:hover { border-color: var(--accent); }
+  .mode svg { width: 18px; height: 18px; }
+  .mode .moon { display: none; }
+  :root[data-mode="dark"] .mode .moon { display: block; }
+  :root[data-mode="dark"] .mode .sun { display: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* ---------- pages ---------- */
+  main { position: relative; z-index: 2; }
+  .page { padding: 44px 0 56px; }
+  .page[hidden] { display: none; }
+  .home {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+  .home img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 12px 12px 0 var(--tint);
+  }
+  .text { max-width: 62ch; }
+  .text p { margin: 0 0 1.1em; }
+  h2 {
+    margin: 0 0 18px;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+  h3 {
+    margin: 0 0 4px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .entry { padding: 16px 0 16px 16px; margin-bottom: 14px; border-left: 3px solid var(--accent); background: var(--tint); border-radius: 0 4px 4px 0; max-width: 62ch; padding-right: 16px; }
+  .entry p { margin: 0; color: var(--muted); }
+  .entry .when { font-size: 14px; font-variant-numeric: tabular-nums; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+  .email {
+    display: inline-block;
+    padding: 12px 24px;
+    text-align: center;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--page);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .email:hover { background: transparent; color: var(--accent); }
+  .email.ghost { background: transparent; color: var(--accent); }
+  .email.ghost:hover { background: var(--accent); color: var(--page); }
+  .address { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
+  a.plain { color: var(--accent); }
+  .affil {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 62ch;
+    margin-bottom: 14px;
+    padding: 18px;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    background: var(--tint);
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+  .affil:hover { color: var(--accent); }
+  .affil .go { flex: none; color: var(--accent); font-size: 20px; }
+  @media (max-width: 620px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 18px; }
+    .top .wrap { padding-top: 14px; padding-bottom: 2px; }
+    .name { font-size: 27px; }
+    .bar { margin-top: 4px; gap: 4px 14px; }
+    .tabs { gap: 14px; font-size: 15px; }
+    .page { padding: 28px 0 40px; }
+    .home { grid-template-columns: 1fr; gap: 28px; }
+    .home img { max-width: 190px; }
+    h2 { font-size: 26px; }
+    .actions { flex-direction: column; }
+    .address { text-align: center; overflow-wrap: anywhere; }
+  }
+  /* short screens (a phone held sideways): let the header scroll away */
+  @media (max-height: 480px) {
+    .top { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP OF EVERY PAGE: name, tabs, light/dark button ===== -->
+<header class="top">
+  <div class="wrap">
+    <h1 class="name">Jorge Manuel Chia <span>(Joji Chia)</span></h1>
+    <div class="bar">
+      <nav class="tabs" aria-label="Pages">
+        <a href="#home">Home</a>
+        <a href="#publications">Publications</a>
+        <a href="#affiliation">Affiliation</a>
+      </nav>
+      <button class="mode" id="mode" type="button" aria-label="Switch to dark mode">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.8A8.6 8.6 0 0 1 9.2 3.5a8.6 8.6 0 1 0 11.3 11.3z"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="pulse" aria-hidden="true">
+    <svg viewBox="0 0 96 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M0 11h26l5-5 5 5h6l4 8 7-17 6 14 3-5h34"/></svg>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= HOME PAGE ================= -->
+  <section class="page home" id="home">
+    <!-- EDIT 6: PHOTO
+         Keep a file called photo.jpg in the same folder as this file.
+         To change the picture, replace that file or change the name below. -->
+    <img src="photo.jpg" alt="Portrait of Joji Chia" width="406" height="776">
+
+    <div class="text">
+
+      <!-- EDIT 1: HOME PAGE TEXT
+           Paste your own text between <p> and </p>.
+           For a new paragraph, add another <p> ... </p> line. -->
+      <p>hello this is joji chia, a phd student in uiuc you know the drill contact me babe.</p>
+      <p>Paste a second paragraph here, or delete this line.</p>
+      <!-- END OF HOME TEXT -->
+
+      <!-- EDIT 2: EMAIL ADDRESS
+           Replace you@example.com with your address in BOTH places below. -->
+      <div class="actions">
+        <a class="email" href="mailto:jbchia2@illinois.edu">Email me</a>
+
+        <!-- EDIT 3: CV BUTTON
+             This button opens your Google Doc CV in a new tab.
+             To use a different document, replace the address inside href="..." -->
+        <a class="email ghost" href="https://docs.google.com/document/d/e/2PACX-1vRK95NAJ7rFDefAXCgkwvpGJss9FmTaofVl2rOySM8UdyMWktjv8bvfn49sifRuSzPqzF9xMJS7V4q6/pub" target="_blank" rel="noopener">View CV</a>
+      </div>
+      <p class="address">you@example.com</p>
+    </div>
+  </section>
+
+  <!-- ================= PUBLICATIONS PAGE ================= -->
+  <section class="page" id="publications" hidden>
+    <h2>Publications</h2>
+
+    <!-- EDIT 4: PUBLICATIONS
+         Each block from <div class="entry"> to </div> is one item.
+         Copy a whole block and paste it below the last one to add more. -->
+    <div class="entry">
+      <h3>Title of your first publication</h3>
+      <p class="when">Year, journal or venue</p>
+      <p>One or two sentences about it. <a class="plain" href="https://example.com">Link</a></p>
+    </div>
+    <div class="entry">
+      <h3>Title of your second publication</h3>
+      <p class="when">Year, journal or venue</p>
+      <p>One or two sentences about it.</p>
+    </div>
+    <!-- END OF PUBLICATIONS -->
+  </section>
+
+  <!-- ================= AFFILIATION PAGE ================= -->
+  <section class="page" id="affiliation" hidden>
+    <h2>Affiliation</h2>
+
+    <!-- EDIT 5: AFFILIATIONS
+         Each block from <a class="affil" ...> to </a> is one affiliation.
+         The web address goes inside href="..." and the name goes inside the first <span>.
+         Copy a whole block to add another. -->
+    <a class="affil" href="https://sociology.illinois.edu/directory/profile/jbchia2" target="_blank" rel="noopener">
+      <span>University of Illinois Sociology</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://publish.illinois.edu/hoopsickresearch/our-team/" target="_blank" rel="noopener">
+      <span>Multilevel Epidemiologic Assessment of Substance Use, Resilience, and Emotional Well-Being (MEASURE) Lab</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* ---------- 1. Tabs: show one page at a time ---------- */
+  var pages = ["home", "publications", "affiliation"];
+  function show() {
+    var id = location.hash.replace("#", "");
+    if (pages.indexOf(id) === -1) id = "home";
+    pages.forEach(function (p) {
+      document.getElementById(p).hidden = p !== id;
+    });
+    document.querySelectorAll(".tabs a").forEach(function (a) {
+      if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", show);
+  show();
+
+  /* ---------- 2. Light and dark mode ---------- */
+  var modeBtn = document.getElementById("mode");
+  function setMode(mode) {
+    root.setAttribute("data-mode", mode);
+    modeBtn.setAttribute("aria-label", mode === "dark" ? "Switch to light mode" : "Switch to dark mode");
+    try { localStorage.setItem("mode", mode); } catch (e) {}
+  }
+  try {
+    if (localStorage.getItem("mode") === "dark") setMode("dark");
+  } catch (e) {}
+  modeBtn.addEventListener("click", function () {
+    setMode(root.getAttribute("data-mode") === "dark" ? "light" : "dark");
+  });
+})();
+</script>
+</body>
+</html>
