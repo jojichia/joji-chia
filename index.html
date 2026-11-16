@@ -9,13 +9,15 @@
  addresses inside quotes. Save, then refresh the page in your browser.
 
    WHAT YOU WANT TO CHANGE            SEARCH FOR                LINE
-   Text on the Home page              EDIT 1: HOME PAGE TEXT    247
-   Your publications                  EDIT 2: PUBLICATIONS      260
-   Your affiliations and links        EDIT 3: AFFILIATIONS      280
-   Email and LinkedIn (Contacts)      EDIT 4: CONTACTS PAGE     298
-   Where the CV tab goes              EDIT 5: CV TAB LINK       224
-   Your photo                         EDIT 6: PHOTO             240
-   The icon on the browser tab        EDIT 7: TAB ICON          33
+   Text on the Home page              EDIT 1: HOME PAGE TEXT    284
+   Your publications                  EDIT 2: PUBLICATIONS      297
+   Your affiliations and links        EDIT 3: AFFILIATIONS      317
+   Email and LinkedIn (Contacts)      EDIT 4: CONTACTS PAGE     335
+   Where the CV tab goes              EDIT 5: CV TAB LINK       262
+   Your photo                         EDIT 6: PHOTO             277
+   The icon on the browser tab        EDIT 7: TAB ICON          35
+   The short line under your name     EDIT 8: TAGLINE           253
+   The moving heartbeat lines         EDIT 9: VITAL SIGNS       373
 
  FILES THAT MUST SIT TOGETHER IN ONE FOLDER
    index.html    this file
@@ -31,12 +33,14 @@
 <title>Joji Chia</title>
 
 <!-- EDIT 7: TAB ICON
-     Right now this is a small built-in moon and stars drawing so the tab is never blank.
-     To use the Icons8 icon instead: download it as a PNG, name it favicon.png,
-     put it in the same folder as this file, delete the line below that starts
-     with <link rel="icon" href="data:..., and remove the comment marks around the next line. -->
+     This is a green heart drawn right here in the code, so no extra file is needed.
+     To change its colour, replace 22c55e (near the end of the line that starts
+     with <link rel="icon" href="data:...) with another colour code. Keep the %23 before it.
+     To use your own picture instead: name it favicon.png, put it in the same folder
+     as this file, delete that line, and remove the comment marks around the next line. -->
 <!-- <link rel="icon" type="image/png" href="favicon.png"> -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M40 6a26 26 0 1 0 18 40A22 22 0 0 1 40 6z' fill='%23f2c94c'/%3E%3Ccircle cx='48' cy='14' r='3' fill='%23f2c94c'/%3E%3Ccircle cx='56' cy='28' r='2' fill='%23f2c94c'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 57C10 41 4 30 4 20C4 11 11 5 19 5C25 5 30 8 32 13C34 8 39 5 45 5C53 5 60 11 60 20C60 30 54 41 32 57Z' fill='%2322c55e'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0b1614">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,6 +56,7 @@
     --line: #1f302b;
     --accent: #7fd6b5;
     --tint: #14251f;
+    --gap: #e0a458;   /* the second, weaker line: the colour of the gap */
     --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
     --body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
     --mono: "IBM Plex Mono", Consolas, Menlo, monospace;
@@ -79,10 +84,18 @@
     z-index: 5;
     background: var(--page);
   }
-  .pulse { display: flex; align-items: center; color: var(--accent); }
-  .pulse::before { content: ""; flex: 0 0 24px; height: 1px; background: var(--line); }
-  .pulse::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-  .pulse svg { flex: none; width: 96px; height: 22px; display: block; }
+  /* the monitor strip under the tabs: chart-paper grid, two moving traces */
+  .pulse {
+    height: 46px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background-color: #09120f;
+    background-image:
+      linear-gradient(to right, rgba(127, 214, 181, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(127, 214, 181, 0.07) 1px, transparent 1px);
+    background-size: 12px 12px;
+  }
+  .pulse canvas { display: block; width: 100%; height: 100%; }
   .wrap {
     max-width: 880px;
     margin: 0 auto;
@@ -99,6 +112,15 @@
     text-wrap: balance;
   }
   .name span { color: var(--muted); font-style: italic; }
+  .kicker {
+    margin: 8px 0 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .kicker i { font-style: normal; color: var(--gap); padding: 0 0.5em; }
   .bar {
     display: flex;
     align-items: center;
@@ -144,6 +166,17 @@
     font-weight: 400;
     font-size: 30px;
     line-height: 1.2;
+  }
+  /* two unequal bars before each page title: the same gap, in miniature */
+  h2::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 0.8em;
+    margin-right: 12px;
+    background:
+      linear-gradient(var(--accent), var(--accent)) left bottom / 5px 100% no-repeat,
+      linear-gradient(var(--gap), var(--gap)) right bottom / 5px 45% no-repeat;
   }
   h3 {
     margin: 0 0 4px;
@@ -194,6 +227,8 @@
     .wrap { padding: 0 18px; }
     .top .wrap { padding-top: 14px; padding-bottom: 2px; }
     .name { font-size: 27px; }
+    .kicker { margin-top: 5px; font-size: 10.5px; letter-spacing: 0.1em; }
+    .pulse { height: 36px; }
     .bar { margin-top: 4px; gap: 4px 14px; }
     .tabs { gap: 0 14px; font-size: 15px; } .tabs .out { display: none; }
     .page { padding: 28px 0 40px; }
@@ -215,6 +250,9 @@
 <header class="top">
   <div class="wrap">
     <h1 class="name">Jorge Manuel Chia <span>(Joji Chia)</span></h1>
+    <!-- EDIT 8: TAGLINE
+         The short line under your name. Change the words; keep each <i>/</i> as the divider. -->
+    <p class="kicker">Family<i>/</i>Health disparities<i>/</i>Philippines</p>
     <div class="bar">
       <nav class="tabs" aria-label="Pages">
         <a href="#home">Home</a>
@@ -228,9 +266,8 @@
       </nav>
     </div>
   </div>
-  <div class="pulse" aria-hidden="true">
-    <svg viewBox="0 0 96 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M0 11h26l5-5 5 5h6l4 8 7-17 6 14 3-5h34"/></svg>
-  </div>
+  <!-- The moving heartbeat lines are drawn here. Their settings are at EDIT 9 near the bottom. -->
+  <div class="pulse" aria-hidden="true"><canvas id="vitals"></canvas></div>
 </header>
 
 <main class="wrap">
@@ -331,6 +368,92 @@
   }
   window.addEventListener("hashchange", show);
   show();
+
+  /* ---------- 2. Vital signs: two heartbeat lines that sweep like a monitor ---------- */
+  /* EDIT 9: VITAL SIGNS
+     SPEED     how fast the lines travel (bigger number = faster)
+     SHOW_GAP  true  = two lines, a strong green one and a weaker amber one
+               false = only the green line */
+  var SPEED = 110;
+  var SHOW_GAP = true;
+  /* END OF VITAL SIGNS SETTINGS */
+
+  var canvas = document.getElementById("vitals");
+  if (canvas && canvas.getContext) {
+    var ctx = canvas.getContext("2d");
+    var css = getComputedStyle(root);
+    var lines = [
+      { color: css.getPropertyValue("--accent").trim() || "#7fd6b5", beat: 150, amp: 1, mid: SHOW_GAP ? 0.44 : 0.6 }
+    ];
+    if (SHOW_GAP) {
+      lines.push({ color: css.getPropertyValue("--gap").trim() || "#e0a458", beat: 205, amp: 0.42, mid: 0.84 });
+    }
+    /* one heartbeat: [position in the beat, height] */
+    var shape = [[0, 0], [0.16, 0], [0.21, 0.12], [0.26, 0], [0.34, 0], [0.37, -0.14], [0.41, 1],
+                 [0.45, -0.28], [0.49, 0], [0.6, 0], [0.68, 0.22], [0.76, 0], [1, 0]];
+    function wave(t) {
+      for (var i = 1; i < shape.length; i++) {
+        if (t <= shape[i][0]) {
+          var a = shape[i - 1], b = shape[i];
+          return a[1] + (b[1] - a[1]) * (t - a[0]) / (b[0] - a[0]);
+        }
+      }
+      return 0;
+    }
+    var W = 0, H = 0, x = 0, travelled = 0, last = 0, GAP = 30;
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function yAt(line, d) {
+      var t = (d / line.beat) % 1;
+      return H * line.mid - wave(t) * line.amp * H * 0.36;
+    }
+    function draw(fromX, toX, fromD) {
+      lines.forEach(function (line) {
+        ctx.beginPath();
+        ctx.moveTo(fromX, yAt(line, fromD));
+        for (var px = fromX + 1; px < toX; px++) ctx.lineTo(px, yAt(line, fromD + px - fromX));
+        ctx.lineTo(toX, yAt(line, fromD + toX - fromX));
+        ctx.strokeStyle = line.color;
+        ctx.shadowColor = line.color;
+        ctx.stroke();
+      });
+    }
+    function size() {
+      var ratio = window.devicePixelRatio || 1;
+      W = canvas.clientWidth;
+      H = canvas.clientHeight;
+      canvas.width = Math.round(W * ratio);
+      canvas.height = Math.round(H * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      ctx.lineWidth = 1.6;
+      ctx.lineJoin = "round";
+      ctx.lineCap = "round";
+      ctx.shadowBlur = 5;
+      x = 0;
+      if (still) draw(0, W, 0);          /* no motion wanted: show a still trace */
+    }
+    function frame(now) {
+      var step = Math.min((now - last) / 1000, 0.05) * SPEED;
+      last = now;
+      if (W > 0 && step > 0) {
+        if (x >= W) x = 0;
+        var to = Math.min(x + step, W);
+        /* wipe a small blank space ahead of the line, as a monitor does */
+        ctx.clearRect(x, 0, to - x + GAP, H);
+        if (to + GAP > W) ctx.clearRect(0, 0, to + GAP - W, H);
+        draw(x, to, travelled);
+        travelled += to - x;
+        x = to;
+      }
+      requestAnimationFrame(frame);
+    }
+    size();
+    var lastW = W;
+    window.addEventListener("resize", function () {
+      if (canvas.clientWidth !== lastW || canvas.clientHeight !== H) { size(); lastW = W; }
+    });
+    if (!still) requestAnimationFrame(function (now) { last = now; requestAnimationFrame(frame); });
+  }
 
 })();
 </script>
