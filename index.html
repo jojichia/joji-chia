@@ -9,16 +9,17 @@
  addresses inside quotes. Save, then refresh the page in your browser.
 
    WHAT YOU WANT TO CHANGE            SEARCH FOR                LINE
-   Text on the Home page              EDIT 1: HOME PAGE TEXT    286
-   Your publications                  EDIT 2: PUBLICATIONS      299
-   Your affiliations and links        EDIT 3: AFFILIATIONS      319
-   Email and LinkedIn (Contacts)      EDIT 4: CONTACTS PAGE     337
-   Where the CV tab goes              EDIT 5: CV TAB LINK       263
-   Your photo                         EDIT 6: PHOTO             279
-   The icon on the browser tab        EDIT 7: TAB ICON          36
-   The short line under your name     EDIT 8: TAGLINE           254
-   The moving heartbeat lines         EDIT 9: VITAL SIGNS       434
-   The Support Groups page            EDIT 10: SUPPORT GROUPS   355
+   Text on the Home page              EDIT 1: HOME PAGE TEXT          288
+   Your publications                  EDIT 2: PUBLICATIONS            301
+   Your affiliations and links        EDIT 3: AFFILIATIONS            321
+   Email and LinkedIn (Contacts)      EDIT 4: CONTACTS PAGE           339
+   Where the CV tab goes              EDIT 5: CV TAB LINK             265
+   Your photo                         EDIT 6: PHOTO                   281
+   The icon on the browser tab        EDIT 7: TAB ICON                37
+   The short line under your name     EDIT 8: TAGLINE                 256
+   The moving heartbeat lines         EDIT 9: VITAL SIGNS             440
+   The Health Equity groups           EDIT 10: HEALTH EQUITY GROUPS   361
+   The Health Equity intro text       EDIT 11: HEALTH EQUITY INTRO    357
 
  FILES THAT MUST SIT TOGETHER IN ONE FOLDER
    index.html    this file
@@ -204,6 +205,7 @@
   .email.ghost:hover { background: var(--accent); color: var(--page); }
   .address { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
   a.plain { color: var(--accent); }
+  .intro { max-width: 62ch; margin: 0 0 22px; }
   .affil {
     display: flex;
     align-items: center;
@@ -264,7 +266,7 @@
              This tab opens your Google Doc CV in a new browser tab.
              To use a different document, replace the address inside href="..." -->
         <a href="https://docs.google.com/document/d/e/2PACX-1vRK95NAJ7rFDefAXCgkwvpGJss9FmTaofVl2rOySM8UdyMWktjv8bvfn49sifRuSzPqzF9xMJS7V4q6/pub" target="_blank" rel="noopener">CV<span class="out" aria-hidden="true"> &#8599;</span></a>
-        <a href="#support">Support Groups</a>
+        <a href="#health-equity">Health Equity Resources</a>
       </nav>
     </div>
   </div>
@@ -348,11 +350,15 @@
     </a>
   </section>
 
-  <!-- ================= SUPPORT GROUPS PAGE ================= -->
-  <section class="page" id="support" hidden>
-    <h2>Support Groups</h2>
+  <!-- ================= HEALTH EQUITY PAGE ================= -->
+  <section class="page" id="health-equity" hidden>
+    <h2>Health Equity Organizations</h2>
 
-    <!-- EDIT 10: SUPPORT GROUPS
+    <!-- EDIT 11: HEALTH EQUITY INTRO
+         The short paragraph shown at the top of this page. Change the words between <p ...> and </p>. -->
+    <p class="intro">The organizations below work to reduce health disparities in the Philippines. Some are Filipino-led, and others are international groups with programs in the country. Each link opens the organization's own page.</p>
+
+    <!-- EDIT 10: HEALTH EQUITY GROUPS
          Each block from <a class="affil" ...> to </a> is one group.
          The web address goes inside href="..." and the name goes inside the first <span>.
          Copy a whole block to add another, or delete a whole block to remove one. -->
@@ -404,7 +410,7 @@
       <span>CARE Philippines</span>
       <span class="go" aria-hidden="true">&rarr;</span>
     </a>
-    <!-- END OF SUPPORT GROUPS -->
+    <!-- END OF HEALTH EQUITY GROUPS -->
   </section>
 
 </main>
@@ -414,7 +420,7 @@
   var root = document.documentElement;
 
   /* ---------- 1. Tabs: show one page at a time ---------- */
-  var pages = ["home", "publications", "affiliation", "contacts", "support"];
+  var pages = ["home", "publications", "affiliation", "contacts", "health-equity"];
   function show() {
     var id = location.hash.replace("#", "");
     if (pages.indexOf(id) === -1) id = "home";
