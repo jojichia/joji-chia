@@ -9,15 +9,16 @@
  addresses inside quotes. Save, then refresh the page in your browser.
 
    WHAT YOU WANT TO CHANGE            SEARCH FOR                LINE
-   Text on the Home page              EDIT 1: HOME PAGE TEXT    284
-   Your publications                  EDIT 2: PUBLICATIONS      297
-   Your affiliations and links        EDIT 3: AFFILIATIONS      317
-   Email and LinkedIn (Contacts)      EDIT 4: CONTACTS PAGE     335
-   Where the CV tab goes              EDIT 5: CV TAB LINK       262
-   Your photo                         EDIT 6: PHOTO             277
-   The icon on the browser tab        EDIT 7: TAB ICON          35
-   The short line under your name     EDIT 8: TAGLINE           253
-   The moving heartbeat lines         EDIT 9: VITAL SIGNS       373
+   Text on the Home page              EDIT 1: HOME PAGE TEXT    286
+   Your publications                  EDIT 2: PUBLICATIONS      299
+   Your affiliations and links        EDIT 3: AFFILIATIONS      319
+   Email and LinkedIn (Contacts)      EDIT 4: CONTACTS PAGE     337
+   Where the CV tab goes              EDIT 5: CV TAB LINK       263
+   Your photo                         EDIT 6: PHOTO             279
+   The icon on the browser tab        EDIT 7: TAB ICON          36
+   The short line under your name     EDIT 8: TAGLINE           254
+   The moving heartbeat lines         EDIT 9: VITAL SIGNS       434
+   The Support Groups page            EDIT 10: SUPPORT GROUPS   355
 
  FILES THAT MUST SIT TOGETHER IN ONE FOLDER
    index.html    this file
@@ -263,6 +264,7 @@
              This tab opens your Google Doc CV in a new browser tab.
              To use a different document, replace the address inside href="..." -->
         <a href="https://docs.google.com/document/d/e/2PACX-1vRK95NAJ7rFDefAXCgkwvpGJss9FmTaofVl2rOySM8UdyMWktjv8bvfn49sifRuSzPqzF9xMJS7V4q6/pub" target="_blank" rel="noopener">CV<span class="out" aria-hidden="true"> &#8599;</span></a>
+        <a href="#support">Support Groups</a>
       </nav>
     </div>
   </div>
@@ -346,6 +348,65 @@
     </a>
   </section>
 
+  <!-- ================= SUPPORT GROUPS PAGE ================= -->
+  <section class="page" id="support" hidden>
+    <h2>Support Groups</h2>
+
+    <!-- EDIT 10: SUPPORT GROUPS
+         Each block from <a class="affil" ...> to </a> is one group.
+         The web address goes inside href="..." and the name goes inside the first <span>.
+         Copy a whole block to add another, or delete a whole block to remove one. -->
+    <a class="affil" href="https://jhpiego.org/where-we-work/philippines/" target="_blank" rel="noopener">
+      <span>Jhpiego</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://www.projecthope.org/region/asia/the-philippines/" target="_blank" rel="noopener">
+      <span>Project HOPE</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://womeningh.org/chapter/philippines/" target="_blank" rel="noopener">
+      <span>Women in Global Health</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://rootsofhealth.org/about-us/" target="_blank" rel="noopener">
+      <span>Roots of Health</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://www.talangdalisay.org/about-us" target="_blank" rel="noopener">
+      <span>Talang Dalisay</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://childhope.org.ph/who-we-are/" target="_blank" rel="noopener">
+      <span>Childhope Philippines</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://www.likhaan.org/about-us" target="_blank" rel="noopener">
+      <span>Likhaan</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://mentalhealthph.org/" target="_blank" rel="noopener">
+      <span>MentalHealthPH</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://www.aidshealth.org/global/philippines/" target="_blank" rel="noopener">
+      <span>AIDS Healthcare Foundation (AHF)</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://loveyourself.ph/" target="_blank" rel="noopener">
+      <span>LoveYourself</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://www.hand-philippines.org/copy-of-who-we-are" target="_blank" rel="noopener">
+      <span>Health Assistance and Network Development-Philippines (HAND-Philippines)</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="affil" href="https://care-philippines.org/" target="_blank" rel="noopener">
+      <span>CARE Philippines</span>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <!-- END OF SUPPORT GROUPS -->
+  </section>
+
 </main>
 
 <script>
@@ -353,7 +414,7 @@
   var root = document.documentElement;
 
   /* ---------- 1. Tabs: show one page at a time ---------- */
-  var pages = ["home", "publications", "affiliation", "contacts"];
+  var pages = ["home", "publications", "affiliation", "contacts", "support"];
   function show() {
     var id = location.hash.replace("#", "");
     if (pages.indexOf(id) === -1) id = "home";
